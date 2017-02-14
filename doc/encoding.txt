@@ -1,0 +1,138 @@
+MOV A, Rn		1110 1nnn
+MOV A, data		1110 0101 dddd dddd
+MOV A, @Ri		1110 011i
+MOV A, #data		0111 0100 dddd dddd
+
+MOV Rn, A		1111 1nnn
+MOV Rn, data		1010 1nnn dddd dddd
+MOV Rn, #data		0111 1nnn dddd dddd
+
+MOV data, A		1111 0101 dddd dddd
+MOV data, Rn		1000 1nnn dddd dddd
+MOV data, data		1000 0101 dddd dddd dddd dddd
+MOV data, @Ri		1000 011n dddd dddd
+MOV data, @data 	0111 0101 dddd dddd dddd dddd
+
+MOV @Ri, A		1111 011n
+MOV @Ri, data		1010 011n dddd dddd
+MOV @Ri, #data		0111 011n dddd dddd
+
+MOV DPTR, #data16	1101 0000 dddd dddd dddd dddd
+
+MOV CY, bit		1010 0010 bbbb bbbb
+MOV bit, CY		1001 0010 bbbb bbbb
+
+
+MOVC A, @A+DPTR
+MOVC A, @A+PC
+MOVX A, @Ri
+MOVX A, @DPTR
+MOVX A, @Ri
+MOVX A, #DPTR
+MOVX @Ri, A
+MOVX @DPTR, A
+
+PUSH data
+POP data
+
+XCH A, Rn
+XCH A, data
+XCH A, @Ri
+XCHD A, #Ri
+
+ANL A, Rn
+ANL A, data
+ANL A, @Ri
+ANL A, #data
+ANL data, A
+ANL data, #data
+ANL C, bit
+ANL C, /bit
+
+ORL A, Rn
+ORL A,data
+ORL A, @Ri
+ORL A, #data
+ORL data, A
+ORL data, @data
+ORL C, bit
+ORL C, /bit
+
+XRL A, Rn
+XRL A, data
+XRL A, @Ri
+XRL A, #data
+XRL data, A
+XRL data, #data
+
+SETB C
+SETB bit
+
+CLR A
+CLR C
+CLR bit
+CPL A
+CPL C
+CPL bit
+RL A
+RLC A
+RR A
+RRC A
+SWAP A
+
+ADD A, Rn
+ADD A, data
+ADD A, @Ri
+ADD A, #data
+
+ADC A, Rn
+ADC A, data
+ADC A, @Ri
+ADC A, #data
+
+SUBB A, Rn
+SUBB A, data
+SUBB A, @Ri
+SUBB A, #data
+
+INC A
+INC Rn
+INC data
+INC @Ri
+INC DPTR
+
+DEC A
+DEC Rn
+DEC data
+DEC @Ri
+MUL AB
+DIV AB
+DA A
+
+AJMP addr11
+LJMP addr16
+SJMP rel8
+JMP @A+DPTR
+JZ rel8
+JNZ rel8
+JC rel8
+JNC rel8
+JB bit, rel8
+JNB bit, rel8
+JBC bit, rel8
+
+CJNE A, data, rel8
+CJNE A, #data, rel8
+CJNE @Ri, #data, rel
+CJNE Rn, #data, rel
+DJNZ Rn, rel8
+DJNZ data, rel8
+
+ACALL addr11
+LCALL addr16
+RET
+RETI
+NOP
+
+
+Ri = R0, R1	
